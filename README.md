@@ -2,6 +2,13 @@
 
 Mobile automation (Appium/Selenium) test project with an AI-powered test-analysis agent.
 
+## About this project
+
+This project was created as a submission for an Appium course.
+
+I later added AI-based test analysis to it, as a way to learn how to work with
+`agents`, `tools`, and `skills`.
+
 ## Requirements
 
 - Java 21
