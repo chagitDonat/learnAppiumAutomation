@@ -48,7 +48,8 @@ certs/
 *.key
 .env
 *.env
-src/main/resources/local.properties
+local.properties
+!local.properties.example
 
 ### GitHub / local agent folders ###
 .idea/

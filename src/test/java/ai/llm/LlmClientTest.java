@@ -1,5 +1,6 @@
 package ai.llm;
 
+import ai.config.AppConfig;
 import base.BaseTest;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ public class LlmClientTest extends BaseTest {
     }
 
 
-    private static final String API_KEY = System.getenv("VERISOFT_API_KEY");
+    private static final String API_KEY = AppConfig.get("VERISOFT_API_KEY");
 
     //@Test
     void getModels() throws Exception {
@@ -32,12 +33,13 @@ public class LlmClientTest extends BaseTest {
 
         System.setProperty(
                 "javax.net.ssl.trustStore",
-                new File("certs/verisoft-truststore.jks").getAbsolutePath()
+                new File(AppConfig.get("VERISOFT_TRUSTSTORE_PATH", "certs/verisoft-truststore.jks"))
+                        .getAbsolutePath()
         );
 
         System.setProperty(
                 "javax.net.ssl.trustStorePassword",
-                "changeit"
+                AppConfig.get("VERISOFT_TRUSTSTORE_PASSWORD", "changeit")
         );
 
         HttpRequest request = HttpRequest.newBuilder()

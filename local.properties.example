@@ -1,0 +1,12 @@
+# Copy this file to "local.properties" and fill in your own values.
+# local.properties is git-ignored and must never be committed.
+
+# Required: Verisoft LLM API key
+VERISOFT_API_KEY=your-verisoft-api-key
+
+# Optional: LLM endpoint (defaults to https://llm.verisoft.io/v1)
+VERISOFT_BASE_URL=https://llm.verisoft.io/v1
+
+# Optional: TLS truststore used by the tests
+VERISOFT_TRUSTSTORE_PATH=certs/verisoft-truststore.jks
+VERISOFT_TRUSTSTORE_PASSWORD=changeit

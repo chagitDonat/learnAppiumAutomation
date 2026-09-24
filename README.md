@@ -9,11 +9,35 @@ Mobile automation (Appium/Selenium) test project with an AI-powered test-analysi
 
 ## Required configuration
 
-Secrets and certificates are **not** stored in this repository and must be provided locally.
+Secrets and certificates are **not** stored in this repository and must be supplied locally.
 
-### 1. API key
+Configuration is resolved in this order (first non-blank value wins):
 
-Set the environment variable `VERISOFT_API_KEY` before running tests.
+1. Environment variable
+2. JVM system property (e.g. `-DVERISOFT_API_KEY=...`)
+3. `application.properties` or `local.properties` (project root, or on the classpath)
+
+This project is plain Maven/JUnit (not Spring Boot), so the properties file is read by
+[`AppConfig`](src/main/java/ai/config/AppConfig.java).
+
+### Option A - local.properties (recommended)
+
+Copy the template and fill in your own values:
+
+```bash
+cp local.properties.example local.properties
+```
+
+```properties
+VERISOFT_API_KEY=your-verisoft-api-key
+VERISOFT_BASE_URL=https://llm.verisoft.io/v1
+VERISOFT_TRUSTSTORE_PATH=certs/verisoft-truststore.jks
+VERISOFT_TRUSTSTORE_PASSWORD=changeit
+```
+
+`local.properties` is git-ignored and must never be committed.
+
+### Option B - environment variable
 
 PowerShell:
 
@@ -27,13 +51,11 @@ Bash / Git Bash:
 export VERISOFT_API_KEY="your-key"
 ```
 
-Optionally override the endpoint with `VERISOFT_BASE_URL`
-(defaults to `https://llm.verisoft.io/v1`).
+### TLS truststore
 
-### 2. TLS truststore
-
-Place the corporate truststore at `certs/verisoft-truststore.jks`.
-The entire `certs/` directory is git-ignored and must be supplied locally.
+The tests load the corporate truststore from `VERISOFT_TRUSTSTORE_PATH`
+(defaults to `certs/verisoft-truststore.jks`). The whole `certs/` directory is git-ignored
+and must be supplied locally.
 
 ## Build and test
 
