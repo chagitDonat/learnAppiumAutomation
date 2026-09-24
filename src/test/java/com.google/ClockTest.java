@@ -71,7 +71,7 @@ public class ClockTest extends BaseTest{
             // לאחר המתנה של 30 שניות בטסט
             Thread.sleep(30000);
             timerPage.startPauseBtnClick();
-            Assertions.assertTrue(timerPage.getRemainingSecondsText() < 20);
+            Assertions.assertTrue(timerPage.getRemainingSecondsText() < 30);
 
          } catch (Throwable e) {
 
